@@ -14,14 +14,6 @@ import { Collapse } from 'react-collapse';
 
 library.add(fab, fas, far);
 
-const wrapperStyle = {
-  //backgroundColor: "#afeeee",
-  //height: '750px',
-}
-const cardStyle = {
- height: '410px'
-}
-
 class App extends React.Component{
 
   constructor(props) {
@@ -53,49 +45,46 @@ class App extends React.Component{
                   name: "Taro",
                   age: "22",
                   img: <img src = './taro.png' alt = 'taro' className = 'person-img'/>,
-                  detal: "Taro's details screen"
+                  detail: "Taro's details screen"
                 },
                 {
                   id: 2,
                   name: "Hanako",
                   age: "21",
                   img: <img src = './hanako.png' alt = 'hanako' className = 'person-img'/>,
-                  detal: "Hanako's details screen"
+                  detail: "Hanako's details screen"
                 },
                 {
                   id: 3,
                   name: "Rina",
                   age: "23",
                   img: <img src = './rina.png' alt = 'rina' className = 'person-img'/>,
-                  detal: "Rina's details screen"
+                  detail: "Rina's details screen"
                 },
                 {
                   id: 4,
                   name: "Kenta",
                   age: "25",
                   img: <img src = './kenta.png' alt = 'kenta' className = 'person-img'/>,
-                  detal: "Kenta's details screen"
+                  detail: "Kenta's details screen"
                 }
               ];
     return person.map((d) => {
       return(
-        <Card 
+        <Card
         key={d.id}
         onSwipeLeft={this.onSwipeLeft.bind(this)}
         onSwipeRight={this.onSwipeRight.bind(this)}
-        data={d}
-        style={cardStyle}>          
+        data={d}>          
           {d.img}
         <span className = 'font'>
         {d.name}, {d.age}
         </span>
-        <div className = 'button-position'>
-        <span>
-          <button　className = 'detail' onClick = {() => {this.toggle()}}>Open / Close</button>
-          <Collapse isOpened={this.state.collapse}>
-          <div>{d.detal}</div>
+          <div>
+            <label　className = 'detail' onClick = {() => {this.toggle()}}>　</label>
+            <Collapse isOpened={this.state.collapse}>
+              <div>{d.detail}</div>
           </Collapse>
-        </span>
         </div>
         </Card>
         );
@@ -105,7 +94,7 @@ class App extends React.Component{
   render(){
     return (
     <div>
-      <CardWrapper style={wrapperStyle}>
+      <CardWrapper>
       {this.renderCards()}
       </CardWrapper>
 
