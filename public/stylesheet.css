@@ -4,7 +4,7 @@
     display: flex;
   }
 
-.button-position{
+.btn-position{
     text-align:center;
 }
 
@@ -12,7 +12,7 @@
     text-align:center;
 }
 
-.button {
+.btn {
     display: inline-block;
     font-size: 16px;
     width: 52px;
@@ -27,7 +27,7 @@
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
-.button:active {
+.btn:active {
     color:#e0ebf5;
     transform: translateY(-5%) scale(0.8);
     transition: all .05s linear;
@@ -36,22 +36,47 @@
 .font {
     font-size: 30px;
     margin-left: 0.1in;
-  }
-
-
-
-
-.nope.cliced{
-    background-color: aquamarine;
 }
 
-
-
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .detail {
     position: absolute;
     bottom: 0;
     width: 100%;
-    background-color: aquamarine;
-   
+    height: 30px;
 }
+
+
+
+
+
+/* ボタン押した時のカードが流れるアニメーション
+.my-card-enter {
+    position: absolute;
+    transform: rotate(-45deg);   
+}
+
+.my-card-enter-active {
+    transition: all .1s linear;
+    transform: translate(-10%,-150px);    
+}
+
+.my-card-enter-active-done {
+    opacity: 1.0;
+}
+
+.my-card-exit {
+    opacity: 1;
+}
+
+.my-card-exit-active {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 300ms, transform 300ms;
+}
+*/

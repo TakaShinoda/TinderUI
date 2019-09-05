@@ -1,34 +1,28 @@
 import React from 'react';
 import '../App.css';
 import { Card, CardWrapper} from 'react-swipeable-cards';
-import { library } from '@fortawesome/fontawesome-svg-core'; //fontawesomeのコアファイル
-import { fab } from '@fortawesome/free-brands-svg-icons'; //fontawesomeのbrandアイコンのインポート
-import { fas } from '@fortawesome/free-solid-svg-icons'; //fontawesomeのsolidアイコンのインポート
-import { far } from '@fortawesome/free-regular-svg-icons'; //fontawesomeのregularアイコンのインポート
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Collapse } from 'react-collapse';
-//import { Transition } from 'react-transition-group';
 //import { CSSTransition } from "react-transition-group";
-//import { Collapse } from 'reactstrap';
-//import { MediaQuery } from 'react-responsive';
 
 library.add(fab, fas, far);
 
 class App extends React.Component{
-
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
-    this.state = { collapse: false , isOpened: this.props.isOpened};
+    this.nopetoggle = this.nopetoggle.bind(this);
+    this.state = { collapse: false , isOpened: this.props.isOpened, nope: false};
   }
-
   toggle() {
     this.setState(state => ({ collapse: !state.collapse }));
   }
-
-
-  onSwipeNope() {
-    console.log("pushed NopeButton.");
+  nopetoggle() {
+    this.setState(state => ({ nope: !state.nope }));
   }
   onSwipeLeft(data) {
     console.log(data.name + " was Leftswiped.");
@@ -69,24 +63,34 @@ class App extends React.Component{
                   detail: "Kenta's details screen"
                 }
               ];
+    const superOnswipe = this.props.superOnswipe
     return person.map((d) => {
       return(
-        <Card
-        key={d.id}
-        onSwipeLeft={this.onSwipeLeft.bind(this)}
-        onSwipeRight={this.onSwipeRight.bind(this)}
-        data={d}>          
+      /*<CSSTransition
+      key={d.id}
+      in ={this.state.nope}
+      timeout={200}
+      classNames = "my-card">
+      
+      <div className='card-container'>*/
+          <Card
+          key={d.id}
+          superOnswipe={superOnswipe}
+          onSwipeLeft={this.onSwipeLeft.bind(this)}
+          onSwipeRight={this.onSwipeRight.bind(this)}
+          data={d}>
           {d.img}
-        <span className = 'font'>
-        {d.name}, {d.age}
-        </span>
-          <div>
-            <label　className = 'detail' onClick = {() => {this.toggle()}}>　</label>
-            <Collapse isOpened={this.state.collapse}>
-              <div>{d.detail}</div>
-          </Collapse>
-        </div>
-        </Card>
+          <div className = 'font'>
+            {d.name}, {d.age}
+          </div>
+          <label　className = 'detail' onClick = {() => {this.toggle()}}>&nbsp;</label>
+          <Collapse isOpened={this.state.collapse}>
+            {d.detail}
+            </Collapse>
+          </Card>
+          /*</div>
+          </CSSTransition>*/
+  
         );
       });
     }
@@ -97,16 +101,14 @@ class App extends React.Component{
       <CardWrapper>
       {this.renderCards()}
       </CardWrapper>
-
-      <div className = 'button-position'>
-        <button onClick = {() => {this.onSwipeNope()}} className ='button nope'>
+      <div className = 'btn-position'>
+        <button onClick = {() => {this.nopetoggle()}} className ='btn nope'>
           <FontAwesomeIcon color='#dc143c' size ='lg' icon={['fas', 'times']} />
-          </button>
-        <button onClick = {() => {console.log('Like')}} className ='button'>
+        </button>
+        <button onClick = {() => {console.log('Like')}} className ='btn'>
           <FontAwesomeIcon  color='#3cb371' size ='lg' icon={['fas', 'heart']} />
-          </button>
-        </div>   
-
+        </button>
+      </div>   
     </div>
     );
   }
