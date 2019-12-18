@@ -17,7 +17,8 @@
     "react-scripts": "3.1.1",
     "react-swipeable-cards": "^1.0.6",
     "react-transition-group": "^4.2.2",
-    "reactstrap": "^8.0.1"
+    "reactstrap": "^8.0.1",
+    "serialize-javascript": "^2.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
